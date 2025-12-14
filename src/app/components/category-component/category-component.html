@@ -1,0 +1,42 @@
+<h3>{{ title() }}</h3>
+
+<!-- @for döngüsü (yeni Angular syntax) -->
+<table>
+  <tr>
+    <th>Id</th>
+    <th>İsim</th>
+    <th>Açıklama</th>
+    <th>Durum</th>
+  </tr>
+  @for(category of categories(); track category.id){
+  <tr>
+    <td>{{ category.id }}</td>
+    <td>{{ category.categoryName }}</td>
+    <td>{{ category.description }}</td>
+    <td>{{ category.status }}</td>
+  </tr>
+  }
+</table>
+
+<hr />
+
+<!-- Form -->
+<h4>Yeni Kategori Ekle</h4>
+
+<form (submit)="addCategory($event)">
+  <input 
+    type="text" 
+    placeholder="Kategori İsmi" 
+    [value]="newCategoryName()" 
+    (input)="onNewCategoryNameChange($event)" 
+  />
+
+  <input 
+    type="text" 
+    placeholder="Açıklama" 
+    [value]="newCategoryDescription()" 
+    (input)="onNewCategoryDescriptionChange($event)" 
+  />
+
+  <button type="submit">Ekle</button>
+</form>
